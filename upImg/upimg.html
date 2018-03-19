@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .inputFileWapper {
+            width: 500px;height: 151px;background: url(adding_03.png) center center;
+            background-size:cover;
+        }
+        .inputFileWapper input{
+            width:100%;height:100%;opacity: 0;
+        }
+
+    </style>
+</head>
+<body>
+    <div style="display:inline-block;" class="inputFileWapper" >
+        <input type="file" accept="image/jpeg,image/jpg,image/png,image/svg" class="uploadimg" onchange="previewImage(this,170,170)">
+    </div>
+</body>
+<script src="jquery.js"></script>
+<script>
+    //图片上传   云店首页
+    var imgArrYd=[];
+    function previewImage(inputObj, width, height) {
+        var div = inputObj.parentNode;//要显示图片的div
+        if(inputObj.files && inputObj.files[0]) {  //获取文件
+            //表示input已经上传图片
+            var uploadFile=inputObj.files[0];
+            if(!(uploadFile.type == 'image/jpeg' || uploadFile.type == ',image/jpg' || uploadFile.type == 'image/png')) {
+                inputObj.files[0] = null;
+                alert('\'图片类型仅支持png、jpg、jpeg\'');
+                return;
+            }
+            var img = document.createElement("img");  //获取图片宽高载体
+            var reader = new FileReader();//创建读取文件的对象
+            reader.onload = function(evt) {//为文件读取成功设置事件
+                img.src=evt.target.result;
+                img.onload = function(){
+                    if(img.width == 710 && img.height == 400 && uploadFile.size <= 512000){
+                        div.style.cssText = "background:url(" + evt.target.result + ") center center";
+                    }else{
+                        div.style.cssText = "background: url(adding_03.png) center center;background-size:cover;";
+                        inputObj.files[0] = null;
+                        alert('图片要求：尺寸为710px*400px，大小小于500K');
+                        return;
+                    }
+                }
+                imgArrYd.push(evt.target.result);//图片转化为64位
+            }
+            // 正式读取文件
+            reader.readAsDataURL(inputObj.files[0]);
+        } else { //兼容IE
+            console.log("取消图片选择！");
+        }
+    };
+
+</script>
+</html>

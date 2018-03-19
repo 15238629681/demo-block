@@ -1,0 +1,164 @@
+<!documenttype html>
+<html>
+
+<head>
+<meta charset="UTF-8">
+<title></title>
+<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+<!--<link href="../css/mui.min.css" rel="stylesheet" />-->
+<style>
+html,body{width: 100%;}
+body{padding-bottom: 60px;}
+a{color: #333;}
+b{font-weight: normal;}
+.clean:before, .clean:after{content:"";display:table;}
+.clean:after{clear:both;}
+.clean{zoom:1;}
+.mui-table-view:before{background: none;height: 0.5px;}
+.mui-table-view:after{background: none;height: 0.5px;}
+.mui-backdrop{background: none;}
+.mui-table-view-cell{padding: 10px 15px;}
+
+.data-list{margin: 10px;}
+.all-money{padding: 10px;background: #fff;}
+.money-wrap{float: left;width: 25%;text-align: center;color: #666;margin-top: 10px;}
+.all-money .money-wrap:first-child{font-size: 16px;margin-top: 0;}
+.money-wrap div{line-height: 24px;}
+#all-money{color: #FBBD00;font-size: 20px;line-height: 30px;}
+
+#chat-wrap{background: #fff;width: 100%;overflow:hidden;padding: 10px 0;position: relative;}
+#chat-title{border-bottom: 0.5px solid #eee;padding:0 10px 10px}
+#chat-title span{display: inline-block;color: #333;}
+#chat-title span:first-child{}
+#chat-title span:last-child{float: right;color: #999;font-size: 14px;}
+#chat-wrap2{width: 100%;}
+.chart {height: 230px;margin: 0px;padding: 0px;background: #fff;padding-bottom: 5px;}
+#all-money-chat{position: absolute;bottom: 4.4%;color: #333;left: 20px;font-size: 14px;}
+#all-money-chat b{display: inline-block;width: 10px;height: 10px;border-radius: 50%;background: #fb7ca3;margin-right: 5px;}
+
+.choose-time{padding: 10px;background: #fff;}
+.choose-time span{display: inline-block;}
+.choose-time .down{display: inline-block;width:20px;height: 10px;background: url(../images/my/stock/down.png) no-repeat center;background-size: 12px;}
+.choose-time .up{display: inline-block;width:20px;height: 10px;background: url(../images/my/stock/up.png) no-repeat center;background-size: 12px;}
+#time a{color: #333;}
+#question{width: 20px;height: 20px;float: right;border-radius: 50%;background: url(../images/my/stock/question.png) no-repeat center;background-size: 20px;margin-right: 10px;padding: 0 20px;}
+#chooseTime{width: 20px;height: 20px;float: right;background: url(../images/my/stock/date.png) no-repeat center;background-size: 100% 100%;}
+#chooseTime a{display: inline-block;width: 100%;height: 100%;}
+
+.type{background: #fff;padding: 10px 0;}
+.type div{float: left;width: 20%;text-align: center;}
+.type span{padding-bottom: 8px;}
+.type .active{color: #FBBD00;border-bottom: 1.5px solid #FBB000;}
+
+.data-wrap{background: #fff;padding: 10px;margin-top: 10px;}
+#data-title{border-bottom: 0.5px solid #eee;padding-bottom: 10px;}
+
+.money-tab div{float: left;width: 25%;text-align: center;padding: 10px 0;}
+.money-tab div span{padding-bottom: 8px;}
+.money-tab div .active{color: #FF3A46;border-bottom: 1.5px solid #FF3A46;}
+
+.data-title{text-align: center;padding: 5px 0 10px 0;}
+.data-title span{color: #666;font-size: 14px;width: 33%;display: inline-block;text-align: center;}
+.data-content .data {border-top: 0.5px solid #eee;padding: 5px 0;}
+.data-content .data span{display: inline-block;width: 33%;font-size: 14px;}
+.data-content .data span:last-child{text-align: right;}
+.reduce{color: #FF3A46;background: url(../images/my/stock/reduce.png) no-repeat center right;padding-right: 10px;background-size: 8px;}
+.add{color: #30af44;background: url(../images/my/stock/add.png) no-repeat center right;padding-right: 10px;background-size: 8px;}
+
+#mask{position: fixed;top: 0;width: 100%;height: 100%;background: rgba(0,0,0,0.4);display: none;z-index: 999;}
+#mask .question-wrap{padding: 10px 15px;border-radius: 4px;background: #fff;position: absolute;width: 80%;margin-left: 10%;top: 30%;}
+#mask .question-wrap div{margin-top: 10px;}
+#mask .question-wrap  b{font-weight: 500;}
+#mask #close{text-align: center;color: #FBB000;border-top: 1px solid #eee;padding-top: 10px;}
+@media screen and (max-width: 340px)  {
+	.data-content .data span{font-size: 12px;}
+	.money-wrap{font-size: 12px;}
+	.all-money .money-wrap:first-child{font-size: 14px;}
+	.money-wrap div{line-height: 24px;}
+	#all-money{font-size: 18px;line-height: 30px;}
+	.money-tab div span{font-size: 14px;}
+}
+@media screen and (min-width: 400px)  {
+	
+}
+</style>
+</head>
+
+<body>
+<header class="mui-bar mui-bar-nav">
+    <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left mui-icon-arrowleft"></a>
+    <h1 class="mui-title">收入报表</h1>
+</header>
+<div class="mui-content clean">
+	<div class="type clean">
+		<div><span data-type="1" class="active">近7天</span></div>
+		<div><span data-type="2">当月</span></div>
+		<div><span data-type="3">上月</span></div>
+		<div><span data-type="4">今年</span></div>
+		<div><span data-type="5">近一年</span></div>
+	</div>
+	<div class="clean" style="margin-top: 10px;">
+		<span id="question"></span>
+	</div>
+	<div class="data-list clean">
+		<div class="all-money clean">
+			<div class="money-wrap" style="color: #333;">
+				<div style="line-height: 30px;">总收入(元)</div>
+				<div id="all-money">0.00</div>
+			</div>
+			<div class="money-wrap">
+				<div>云店利润</div>
+				<div id="cloudmoney">0.00</div>
+			</div>
+			<div class="money-wrap">
+				<div>奖金</div>
+				<div id="reward">0.00</div>
+			</div>
+			<div class="money-wrap">
+				<div>翻宝币收入</div>
+				<div id="fanbaobi">0</div>
+			</div>
+		</div>
+	</div>
+	<div id="chat-wrap">
+		<div id="chat-title">
+			<span>收入曲线</span>
+			<span>左右滑动可查看全部数据</span>
+		</div>
+		<div id="chat-wrap2">
+			<div class="chart" id="lineChart"></div>
+		</div>
+		<div id="all-money-chat">
+			<b></b>总收入
+		</div>
+	</div>
+	<div class="data-wrap">
+		<div id="data-title">
+			收入明细
+		</div>
+		<div class="money-tab clean">
+			<div><span data-type="1" class="active">总收入</span></div>
+			<div><span data-type="2">云店利润</span></div>
+			<div><span data-type="3">奖金</span></div>
+			<div><span data-type="4">翻宝币收入</span></div>
+		</div>
+		<div class="data-title"><span style="text-align: left;">日期</span><span>金额(元)</span><span style="text-align: right;">日增长</span></div>
+		<div class="data-content"></div>
+	</div>
+</div>
+<div id="mask">
+	<div class="question-wrap">
+		<div><b>一、</b>当月收入数据为预估收入，未排除云店可能退款的订单数据，实际结算收入数据以次月23日结算至您账户内实际到账收入为准。</div>
+		<div><b>二、</b>上月收入数据为待结算至您账户余额数据，将在当月23日进行结算，结算后您可在财务明细中查看相应明细</div>
+		<div><b>三、</b>翻宝币收入为翻宝币兑换后的收入</div>
+		<div id="close">确定</div>
+	</div>
+</div>
+<script src="../js/public/jquery.js"></script>
+<script src="../js/index/echarts-all.js"></script>
+<script src="stock.js"></script>
+<!--<script src="../js/freshnews/hammer.js"></script>-->
+
+</body>
+
+</html>
