@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        *{
+            margin:0px;
+            padding:0px;
+        }
+        #box{
+            width:430px;
+            height:430px;
+            margin:100px;
+            margin-left:17%;
+            position:relative;//这里使用相对定位，好让其他的元素能依靠这个元素定位
+        }
+        #move{
+            background-image:url(../images/move.png);
+            width:220px;
+            height:220px;
+            position:absolute;
+            left:0px;
+            top:0px;
+            display:none;//先让他隐藏，用js使其显示
+        }
+        #bimg{
+            width:430px;
+            height:430px;
+            overflow:hidden;
+            position:absolute;
+            top:0px;
+            left:450px;
+            display:none;//先让他隐藏，用js使其显示
+        }
+        #bimg img{
+            width:800px;
+            height:800px;
+            position:absolute;
+            top:0px;
+            left:0px;
+        }
+    </style>
+</head>
+<body>
+    <div id="box">
+        <img src="images/simg.jpg" alt="#">
+        <div id="move"></div>
+        <div id="bimg">
+            <img id="b_bimg" src="img.jpeg">
+        </div>
+    </div>
+    <script src="index.js"></script>
+</body>
+</html>
